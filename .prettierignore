@@ -1,7 +1,7 @@
 .github
+config
 coverage
 dist
-docs
 node_modules
 .gitignore
 .prettierrc
@@ -10,4 +10,3 @@ package-lock.json
 package.json
 README.md
 tsconfig.json
-typedoc.json
