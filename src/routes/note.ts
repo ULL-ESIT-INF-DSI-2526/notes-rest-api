@@ -120,7 +120,7 @@ noteRouter.patch("/notes/:username/:id", async (req, res) => {
           },
           req.body,
           {
-            new: true,
+            returnDocument: 'after',
             runValidators: true,
           },
         ).populate({
