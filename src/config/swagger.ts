@@ -6,11 +6,12 @@ const options: Options = {
     info: {
       title: "Notes REST API",
       version: "1.0.0",
-      description: "REST API built with Node.js, Express, Mongoose and TypeScript",
+      description:
+        "REST API built with Node.js, Express, Mongoose and TypeScript",
     },
     servers: [
       {
-        url: "http://localhost:3000/",
+        url: process.env.SWAGGER_SERVER,
       },
     ],
     components: {
@@ -59,7 +60,7 @@ const options: Options = {
             },
             age: {
               type: "integer",
-              example: 41
+              example: 41,
             },
           },
         },
@@ -70,19 +71,96 @@ const options: Options = {
           properties: {
             name: {
               type: "string",
-              example: "Eduardo Segredo"
+              example: "Eduardo Segredo",
             },
             username: {
               type: "string",
-              example: "esegredo"
+              example: "esegredo",
             },
             email: {
               type: "string",
-              example: "esegredo@ull.edu.es"
+              example: "esegredo@ull.edu.es",
             },
             age: {
               type: "integer",
-              example: 41
+              example: 41,
+            },
+          },
+        },
+
+        NoteOwner: {
+          type: "object",
+          properties: {
+            _id: {
+              type: "string",
+              example: "661f1f5c9a7b4b001e3f1234",
+            },
+            username: {
+              type: "string",
+              example: "esegredo",
+            },
+          },
+        },
+
+        Note: {
+          type: "object",
+          properties: {
+            _id: {
+              type: "string",
+              example: "66201c5e9a7b4b001e3f5678",
+            },
+            title: {
+              type: "string",
+              example: "Supermarket",
+            },
+            body: {
+              type: "string",
+              example: "Milk, fruit and vegetables",
+            },
+            color: {
+              type: "string",
+              example: "yellow",
+            },
+            owner: {
+              $ref: "#/components/schemas/NoteOwner",
+            },
+          },
+        },
+
+        NoteCreate: {
+          type: "object",
+          required: ["title", "body"],
+          properties: {
+            title: {
+              type: "string",
+              example: "Supermarket",
+            },
+            body: {
+              type: "string",
+              example: "Milk, fruit and vegetables",
+            },
+            color: {
+              type: "string",
+              example: "yellow",
+            },
+          },
+        },
+
+        NoteUpdate: {
+          type: "object",
+          additionalProperties: false,
+          properties: {
+            title: {
+              type: "string",
+              example: "Supermarket",
+            },
+            body: {
+              type: "string",
+              example: "Milk, fruit and vegetables",
+            },
+            color: {
+              type: "string",
+              example: "yellow",
             },
           },
         },
@@ -92,7 +170,7 @@ const options: Options = {
           properties: {
             error: {
               type: "string",
-              example: "A username must be provided",
+              example: "User not found",
             },
           },
         },
